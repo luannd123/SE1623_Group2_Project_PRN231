@@ -23,7 +23,7 @@ namespace Repository.Repositories
         public void SaveOrder(Order order) => OrderDAO.SaveOrder(order);
         
 
-        public void UpdateOrder(int id) => OrderDAO.UpdateOrder(id);
+        public void UpdateOrder(int id, Order order) => OrderDAO.UpdateOrder(id ,order);
        
     }
 }

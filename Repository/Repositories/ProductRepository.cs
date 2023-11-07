@@ -12,7 +12,9 @@ namespace Repository.Repositories
     public class ProductRepository : IProductReository
     {
         public void DeleteProduct(int id) => ProductDAO.DeleteProduct(id);
-       
+
+        public Product GetProductById(int id) => ProductDAO.GetProductById(id);
+        
 
         public List<Product> GetProductByName(string name) => ProductDAO.GetProductByName(name);
         
@@ -26,7 +28,7 @@ namespace Repository.Repositories
         public void SaveProduct(Product product) => ProductDAO.SaveProduct(product);
         
 
-        public void UpdateProduct(int id) => ProductDAO.UpdateProduct(id);
+        public void UpdateProduct(int id, Product p) => ProductDAO.UpdateProduct(id, p);
         
     }
 }

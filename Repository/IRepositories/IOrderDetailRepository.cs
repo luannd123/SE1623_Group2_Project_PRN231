@@ -14,6 +14,6 @@ namespace Repository.IRepositories
         OrderDetail GetOrderById(int id);
         void SaveOrderDetail (OrderDetail orderDetail);
         void DeleteOrderDetail (int id);
-        void UpdateOrderDetail (int id);
+        void UpdateOrderDetail (int id ,OrderDetail orderDetail);
     }
 }

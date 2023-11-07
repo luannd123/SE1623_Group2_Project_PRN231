@@ -23,7 +23,7 @@ namespace Repository.Repositories
         public void SaveOrderDetail(OrderDetail orderDetail) => OrderDetailDAO.SaveOrderDetail(orderDetail);
         
 
-        public void UpdateOrderDetail(int id) => OrderDetailDAO.UpdateOrderDetail(id);
+        public void UpdateOrderDetail(int id, OrderDetail orderDetail) => OrderDetailDAO.UpdateOrderDetail(id ,orderDetail);
        
     }
 }

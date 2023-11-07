@@ -73,14 +73,14 @@ namespace DataAccess.DAO
             }
         }
 
-        public static void UpdateUser(int id)
+        public static void UpdateUser(int id , User user)
         {
             try
             {
                 using (var context = new StoreDBContext())
                 {
-                    var result = context.Users.SingleOrDefault(x => x.UserId == id);
-                    context.Users.Update(result);
+                    user = context.Users.SingleOrDefault(x => x.UserId == id );
+                    context.Users.Update(user);
                     context.SaveChanges();
                 }
             }
@@ -89,5 +89,23 @@ namespace DataAccess.DAO
                 throw new Exception(ex.Message);
             }
         }
+        public static User GetUserByEmailAndPassword(string email, string password)
+        {
+            User? user = new User();
+            try
+            {
+                using (var context = new StoreDBContext())
+                {
+                    user = context.Users.SingleOrDefault(x => x.Email == email && x.Password == password);
+                }
+            }catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return user;
+        }
+
+
     }
 }

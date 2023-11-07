@@ -14,6 +14,7 @@ namespace Repository.IRepositories
         List<User> GetUserByName(string username);
         void SaveUser(User user);
         void DeleteUser(int id);
-        void UpdateUser(int id);
+        void UpdateUser(int id , User user);
+        User GetUserByEmailAndPassword(string email, string password);
     }
 }

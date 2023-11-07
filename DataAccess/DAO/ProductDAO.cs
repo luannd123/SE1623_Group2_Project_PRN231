@@ -81,14 +81,14 @@ namespace DataAccess.DAO
             }
         }
 
-        public static void UpdateProduct(int id)
+        public static void UpdateProduct(int id , Product product)
         {
             try
             {
                 using(var context = new StoreDBContext())
                 {
-                    var result = context.Products.SingleOrDefault(x => x.ProductId == id);
-                    context.Products.Update(result);
+                     product = context.Products.Single(x => x.ProductId == id);
+                    context.Products.Update(product);
                     context.SaveChanges();
                 }
             }catch (Exception ex)

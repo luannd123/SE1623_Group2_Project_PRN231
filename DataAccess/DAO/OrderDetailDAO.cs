@@ -64,14 +64,14 @@ namespace DataAccess.DAO
             }
         }
 
-        public static void UpdateOrderDetail(int id)
+        public static void UpdateOrderDetail(int id , OrderDetail orderDetail)
         {
             try
             {
                 using (var context = new StoreDBContext())
                 {
-                    var result = context.OrderDetails.SingleOrDefault(x => x.OrderDetailId == id);
-                    context.OrderDetails.Update(result);
+                    orderDetail = context.OrderDetails.SingleOrDefault(x => x.OrderDetailId==id);
+                    context.OrderDetails.Update(orderDetail);
                     context.SaveChanges();
                 }
             }

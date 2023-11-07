@@ -12,7 +12,9 @@ namespace Repository.Repositories
     public class UserRepository : IUserRepository
     {
         public void DeleteUser(int id) => UserDAO.DeleteUser(id);
-       
+
+        public User GetUserByEmailAndPassword(string email, string password) => UserDAO.GetUserByEmailAndPassword(email, password);
+        
 
         public User GetUserById(int id) => UserDAO.GetUserById(id);
         
@@ -26,7 +28,7 @@ namespace Repository.Repositories
         public void SaveUser(User user) => UserDAO.SaveUser(user);
         
 
-        public void UpdateUser(int id) => UserDAO.UpdateUser(id);
+        public void UpdateUser(int id, User user) => UserDAO.UpdateUser(id ,user);
         
     }
 }
