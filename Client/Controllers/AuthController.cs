@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
-namespace Client.Models
+namespace Client.Controllers
 {
     public class AuthController : Controller
     {
@@ -46,10 +46,10 @@ namespace Client.Models
             var EmailSetting = configuration.GetValue<string>("MailCredentialsSettings:UserName");
             var PasswordSetting = configuration.GetValue<string>("MailCredentialsSettings:Password");
 
-            if(authenUser.Email == EmailSetting && authenUser.Password == PasswordSetting)
+            if (authenUser.Email == EmailSetting && authenUser.Password == PasswordSetting)
             {
                 authenUser.Email = EmailSetting;
-                HttpContext.Session.SetString("admin" , JsonSerializer.Serialize(authenUser));
+                HttpContext.Session.SetString("admin", JsonSerializer.Serialize(authenUser));
                 return Redirect("~/Product/Index");
             }
             url = "https://localhost:7200/api/User/email,password?";
@@ -57,13 +57,13 @@ namespace Client.Models
             HttpResponseMessage response = await client.PostAsync(url + "email" + authenUser.Email.ToString() + "password" + authenUser.Password.ToString(), content);
             string json = await response.Content.ReadAsStringAsync();
             ViewData["Email"] = authenUser.Email;
-            if (json.Length == 0) return Redirect("~/Authen/Login");
+            if (json.Length == 0) return Redirect("~/Auth/Login");
             var option = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
             };
             User? createUpdateMember = JsonSerializer.Deserialize<User?>(json, option);
-            HttpContext.Session.SetString("member" , JsonSerializer.Serialize(createUpdateMember));          
+            HttpContext.Session.SetString("member", JsonSerializer.Serialize(createUpdateMember));
             return Redirect("~/Home/Index");
         }
 

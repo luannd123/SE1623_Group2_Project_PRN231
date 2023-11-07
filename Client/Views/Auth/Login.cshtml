@@ -1,0 +1,51 @@
+﻿@model DataAccess.Models.User 
+@* <div>
+    <span><a asp-controller="auth" asp-action="register">Register</a></span>
+    <span><a asp-controller="auth" asp-action="login" style="color : blue;">Login</a></span>
+</div>
+<form>
+    @using(Html.BeginForm("Login" , "Auth" , FormMethod.Post))
+    {
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    }
+    
+</form> *@
+<div id="form">
+    <div id="form-title">
+        <span><a asp-controller="authen" asp-action="register">REGISTER</a></span>
+        <span><a asp-controller="authen" asp-action="login" style="color: red;">LOG IN</a></span>
+    </div>
+    <div id="form-content">
+        @using (Html.BeginForm("Login", "Authen", FormMethod.Post))
+        {
+            <label>Email<span style="color: red;">*</span></label>
+
+            <br />
+            @Html.TextBoxFor(m => m.Email)
+
+            <br />
+            <label>Password<span style="color: red;">*</span></label>
+
+            <br />
+            @Html.PasswordFor(m => m.Password)
+
+            <br />
+            <div></div>
+            <div></div>
+            <input type="submit" value="LOG IN" style="margin-bottom: 30px;" />
+        }
+    </div>
+</div>
