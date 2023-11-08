@@ -21,14 +21,22 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("GetUser")]
-        public IActionResult GetAllOrder()
+        public IActionResult GetAllUser()
         {
             var result = repository.GetUsers();
             return Ok(result);
         }
         [HttpGet]
+        [Route("GetUserById/{id}")]
+        public IActionResult GetUserById(int id)
+        {
+            var result = repository.GetUserById(id);
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("GetUserByName/{name}")]
-        public IActionResult GetOrder(string name)
+        public IActionResult GetuserByName(string name)
         {
             var result = repository.GetUserByName(name);
             return Ok(result);
