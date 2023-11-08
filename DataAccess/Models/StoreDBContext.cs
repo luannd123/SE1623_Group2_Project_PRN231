@@ -73,7 +73,7 @@ namespace DataAccess.Models
 
                 );
             modelBuilder.Entity<Order>().HasData(
-                    new Order { OrderId = 1, UserId = 1 , OrderDate = DateTime.Parse("2023/11/01") , RequireDate = DateTime.Parse("2023/11/01"), ShippedDate = DateTime.Parse("2023/11/10")}
+                    new Order { OrderId = 1, UserId = 1 , OrderDate = DateTime.Parse("2023/11/01") , RequireDate = DateTime.Parse("2023/11/01"), ShippedDate = DateTime.Parse("2023/11/10") , Freight ="20000"}
                 );
             modelBuilder.Entity<OrderDetail>().HasData(
                     new OrderDetail { OrderDetailId = 1 , OrderId = 1 , ProductId = 1 , Quantity = 1 , Discount = 20 , Price = 800 }

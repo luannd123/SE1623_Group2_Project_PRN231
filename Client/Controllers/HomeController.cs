@@ -141,6 +141,7 @@ namespace Client.Controllers
                 OrderDate = DateTime.Now,
                 RequireDate = DateTime.Now.AddDays(7),
                 ShippedDate = DateTime.Now.AddDays(1),
+                Freight = carts.Sum(x => x.Product.UnitPrice * x.Quantity).ToString(),
             };
             url = "https://localhost:7200/api/Order/AddNewOrder";
             JsonContent content = JsonContent.Create(orderDtos);

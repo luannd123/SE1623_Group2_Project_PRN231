@@ -20,7 +20,8 @@ namespace DataAccess.Models
         public DateTime RequireDate { get; set; }
         [Required]
         public DateTime ShippedDate { get; set; }
-      
+        [Required]
+        public string Freight { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
