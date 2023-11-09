@@ -1,24 +1,37 @@
 ﻿@model DataAccess.Models.User
 <div id="form">
     <div id="form-title">
-        <span><a asp-controller="authen" asp-action="register" style="color: red;">REGISTER</a></span>
-        <span><a asp-controller="authen" asp-action="login">LOG IN</a></span>
+        <span><a asp-controller="auth" asp-action="register" style="color: red;">REGISTER</a></span>
+        <span><a asp-controller="auth" asp-action="login">LOG IN</a></span>
     </div>
     <div id="form-content">
-        @using (Html.BeginForm("Register", "Authen", FormMethod.Post))
+        @using (Html.BeginForm("Register", "Auth", FormMethod.Post))
         {
-            <label>Email<span style="color: red;">*</span></label><br />
-            @Html.TextBoxFor(m => m.Email)<br />
-            <label>Password<span style="color: red;">*</span></label><br />
-            @Html.PasswordFor(m => m.Password)<br />
-            <label>UserName<span style="color: red;">*</span></label><br />
-            @Html.TextBoxFor(m => m.UserName)<br />
-            <label>Company name<span style="color: red;">*</span></label><br />
-            @Html.TextBoxFor(m => m.Phone)<br />
-            <label>Country<span style="color: red;">*</span></label><br />
-            @Html.TextBoxFor(m => m.Country)<br />
+            <label>Email<span style="color: red;">*</span></label>
+
+            <br />
+            @Html.TextBoxFor(m => m.Email)
+
+            <br />
+            <label>Password<span style="color: red;">*</span></label>
+
+            <br />
+            @Html.PasswordFor(m => m.Password)
+
+            <br />
+            <label>Phone<span style="color: red;">*</span></label>
+
+            <br />
+            @Html.TextBoxFor(m => m.Phone)
+
+            <br />
+            <label>Country<span style="color: red;">*</span></label>
+
+            <br />
+            @Html.TextBoxFor(m => m.Country)
+            <br />
             <div></div>
             <input type="submit" value="REGISTER" style="margin-bottom: 30px;" />
         }
     </div>
-</div
+</div>
