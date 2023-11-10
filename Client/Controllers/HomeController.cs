@@ -2,7 +2,6 @@
 using DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Diagnostics.Metrics;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -16,11 +15,13 @@ namespace Client.Controllers
 
         public HomeController()
         {
+
             client = new HttpClient();
             var contentType = new MediaTypeWithQualityHeaderValue("application/json");
             client.DefaultRequestHeaders.Accept.Add(contentType);
+
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
              url = "https://localhost:7200/api/Product";
             _url = "https://localhost:7200/api/Category";         
@@ -51,7 +52,7 @@ namespace Client.Controllers
             HttpResponseMessage _response = client.GetAsync($"{_url}").Result;
             string _data = _response.Content.ReadAsStringAsync().Result;
             List<Category> category = JsonConvert.DeserializeObject<List<Category>>(_data);
-            ViewData["Category"] = category;
+            ViewData["Categories"] = category;
             return View(products);
         }
 
@@ -68,10 +69,11 @@ namespace Client.Controllers
             return View(product);
         }
 
-        public async Task<IActionResult> ProfileAsync()
+        public async Task<IActionResult> Profile()
         {
+ 
             string? getMember = HttpContext.Session.GetString("member");
-            User? member = new User();
+            User? member = null ;
             if (getMember is not null)
             {
                 member = System.Text.Json.JsonSerializer.Deserialize<User>(getMember);
@@ -80,15 +82,15 @@ namespace Client.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
-            url = "https://localhost:7200/api/User"; 
-            HttpResponseMessage response = await client.GetAsync($"{url}/GetUserById/{member.UserId}"); 
-            string json = await response.Content.ReadAsStringAsync();
-            var options = new JsonSerializerOptions
+            url = "https://localhost:7200/api/User";
+            HttpResponseMessage response = client.GetAsync($"{url}/GetUserById/{member.UserId}").Result;
+            if (response.IsSuccessStatusCode)
             {
-                PropertyNameCaseInsensitive = true
-            };
-            User? createUpdateMemberDTO = System.Text.Json.JsonSerializer.Deserialize<User>(json, options);
-            return View(createUpdateMemberDTO);
+                string data = response.Content.ReadAsStringAsync().Result;
+                member = JsonConvert.DeserializeObject<User>(data);
+                return View(member);
+            }
+            return RedirectToAction("Login", "Auth");
         }
 
         public async Task<IActionResult> Orders()
@@ -106,7 +108,7 @@ namespace Client.Controllers
                 return RedirectToAction("Login", "Auth");
             }
             url = "https://localhost:7200/api/Order";
-            var url1 = url + member.UserId.ToString();
+            var url1 = url + member.UserId;
             HttpResponseMessage response = await client.GetAsync($"{url}/GetOrderById/{order.OrderId}");
             string json = await response.Content.ReadAsStringAsync();
 
@@ -162,7 +164,7 @@ namespace Client.Controllers
             {
                 PropertyNameCaseInsensitive = true
             };
-            User? createUpdateMemberDTO = System.Text.Json.JsonSerializer.Deserialize<User>(json, options);
+            User createUpdateMemberDTO = System.Text.Json.JsonSerializer.Deserialize<User>(json, options);
             return View(createUpdateMemberDTO);
         }
 

@@ -22,7 +22,7 @@
                 {
                     {
                         <div class="product">
-                            <a asp-controller="home" asp-action="detail" asp-route-id="@item.ProductId"><img src="~/img/1.jpg" width="100%" /></a>
+                            <a asp-controller="home" asp-action="detail" asp-route-id="@item.ProductId"><img src="~/ImageProduct/@item.Image" width="100%" /></a>
                             <div class="name"><a href="detail.html">@Html.DisplayFor(modelItem => item.ProductName)</a></div>
                             <div class="price">$@Html.DisplayFor(modelItem => item.UnitPrice)</div>
                             <div><a href="">Buy now</a></div>

@@ -53,7 +53,7 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                    <img src="~/ImageProduct/@Html.DisplayFor(modelItem => item.Image)" height="200px" width="100%"/>
             </td>
             <td>
                     @Html.ActionLink("Edit", "Edit", new {  id=item.ProductId })

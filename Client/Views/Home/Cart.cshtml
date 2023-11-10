@@ -11,7 +11,7 @@
                 <div class="cart-item">
                     <div class="cart-item-infor">
                         <div class="cart-item-img">
-                            <img src="~/img/1.jpg" />
+                            <img src="~/ImageProduct/@cart.Product.Image" />
                         </div>
                         <div class="cart-item-name">
                             <a asp-controller="home" asp-action="detail" asp-route-id="@cart.Product.ProductId">
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div id="cart-order">
-                    <a asp-controller="home" asp-action="saveOrder">
+                    <a asp-controller="home" asp-action="index">
                         <input type="button" value="ORDER" />
                     </a>
                 </div>

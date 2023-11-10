@@ -1,35 +1,59 @@
-﻿@model DataAccess.Models.User;
-<div id="content">
-    <div id="content-left">
-        <h3 style="font-weight: normal;">Welcome Back</h3>
-        <h3>Account Management</h3>
-        <ul>
-            <a href="profile.html">
-            <li>Personal information</li></a>
-        </ul>
-        <h3>My order</h3>
-        <ul>
-            <a href="~/home/orders">
-            <li>All orders</li></a>
-        </ul>
-    </div>
-    <div id="content-right">
-        <div class="path">Personal information</b></div>
-        <div class="content-main">
-            <div id="profile-content">
-                <div class="profile-content-col">
-                    <div>Phone: <br />@Model.Phone</div>
-                    <div>Email: <br />@Model.Email</div>
-                </div>
-                <div class="profile-content-col">
-                    <div>Address: <br /> @Model.Country</div>
-                </div>
-                <div class="profile-content-col">
-                    <div>
-                        <a asp-controller="home" asp-action="updateUser" asp-route-id="@Model.UserId">Update Information</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+﻿@model DataAccess.Models.User
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Profile</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>   
+            <tr>
+                <td>
+                @* @Html.DisplayFor(modelItem => modelItem.UserId) *@
+                @Model.UserId
+                </td>
+                <td>
+                    @Model.Email
+                </td>
+                <td>
+                    @Model.Password
+                </td>
+                <td>
+                    @Model.UserName
+                </td>
+                <td>
+                    @Model.Phone
+                </td>
+                <td>
+                    @Model.Country
+                </td>
+                <td>
+                <a asp-controller="home" asp-action="updateUser" asp-route-id="@Model.UserId">Update Information</a>
+                </td>
+            </tr>      
+    </tbody>
+</table>
