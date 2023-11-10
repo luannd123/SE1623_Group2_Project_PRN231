@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DataAccess.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Repository.IRepositories;
 using Repository.Repositories;
@@ -9,20 +10,27 @@ namespace API.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private ICategoryRepository repository = new CategoryRepository();
+        private ICategoryRepository repository = new CategoryRepository();     
+
         [HttpGet]
-        [Route("GetAllCategory")]
         public IActionResult GetAllCategory()
         {
             var result = repository.GetCategories();
             return Ok(result);
         }
 
-        [HttpGet]
-        [Route("GetCategoryById/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetCategory(int id)
         {
             var result = repository.GetCategoryById(id);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetProductByCategoryId/{id}")]
+        public IActionResult GetProductByCategoryId(int id)
+        {
+            var result = repository.GetProductsByCategoryId(id);
             return Ok(result);
         }
     }

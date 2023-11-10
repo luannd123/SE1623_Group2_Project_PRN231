@@ -21,7 +21,6 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("GetOrders")]
         public IActionResult GetOrders()
         {
             var result = repository.GetOrders();
@@ -29,7 +28,20 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("GetOrdersByDate/{From}/{To}")]
+        [Route("GetOrdeDetailByOrderId/{id}")]
+        public IActionResult GetOrderDetail(int id)
+        {
+            var result = repository.GetOrderDetail(id);
+            return Ok(result);
+        }
+        [HttpGet]
+        [Route("GetOrderById/{id}")]
+        public IActionResult GetOrder(int id)
+        {
+            var result = repository.GetOrder(id);
+            return Ok(result);
+        }
+        [HttpGet("{From}/{To}")]
         public IActionResult GetOrderByDate(DateTime From , DateTime To)
         {
             var result = repository.GetOrderByDate(From, To);
@@ -37,7 +49,6 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Route("AddNewOrder")]
         public IActionResult AddNewOrder(CreateUpdateOrderDTO order)
         {
             try
@@ -50,14 +61,13 @@ namespace API.Controllers
            
             return Ok("Add Successfull !!!");    
         }
-        [HttpPut]
-        [Route("UpdateOrder/{id}")]
+        [HttpPut("{id}")]
         public IActionResult UpdateOrder(int id , [FromBody] CreateUpdateOrderDTO order)
         {
             try
             {
                 var map = _mapper.Map<Order>(order);
-                repository.UpdateOrder(id , map);
+                repository.UpdateOrder(map);
             }catch(Exception ex)
             {
                 return BadRequest(ex.Message);
@@ -65,7 +75,7 @@ namespace API.Controllers
             return Ok("Update Successfull !!!");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteOrder(int id)
         {
             try

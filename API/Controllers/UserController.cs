@@ -20,7 +20,6 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("GetUser")]
         public IActionResult GetAllUser()
         {
             var result = repository.GetUsers();
@@ -34,8 +33,7 @@ namespace API.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
-        [Route("GetUserByName/{name}")]
+        [HttpGet("{name}")]
         public IActionResult GetuserByName(string name)
         {
             var result = repository.GetUserByName(name);
@@ -49,23 +47,20 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Route("AddNewUser")]
         public IActionResult AddNewUser(CreateUpdateUserDTO user)
         {
             repository.SaveUser(_mapper.Map<User>(user));
             return Ok("Add Successfull !!!");
         }
 
-        [HttpPut]
-        [Route("UpdateUser/{id}")]
+        [HttpPut("{id}")]
         public IActionResult UpdateUser(int id , [FromBody] CreateUpdateUserDTO user)
         {
             var map = _mapper.Map<User>(user);
-            repository.UpdateUser(id , map);
+            repository.UpdateUser(map);
             return Ok("Update Successfull !!!");
         }
-        [HttpDelete]
-        [Route("DeleteUser/{id}")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
             repository.DeleteUser(id);

@@ -15,7 +15,7 @@ namespace Repository.IRepositories
         List<Product> GetProductByPrice(decimal price);
         void SaveProduct (Product product);
         void DeleteProduct (int id);
-        void UpdateProduct (int id , Product product);
+        void UpdateProduct (Product product);
 
        
     }

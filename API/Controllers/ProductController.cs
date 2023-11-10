@@ -20,7 +20,6 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllProduct")]
         public IActionResult GetAllProduct()
         {
             var result = repository.GetProducts();
@@ -44,7 +43,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("GetProductByPrice/{price}")]
+        [Route("{price}")]
         public IActionResult GetProductByPrice(decimal price)
         {
             var result = repository.GetProductByPrice(price);
@@ -52,24 +51,21 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Route("AddNewProduct")]
         public IActionResult AddNewProduct([FromBody] CreateUpdateProductDTO product)
         {
              repository.SaveProduct(_mapper.Map<Product>(product));
             return Ok("Add Successfull");    
         }
 
-        [HttpPut]
-        [Route("UpdateProduct/{id}")]
+        [HttpPut("{id}")]
         public IActionResult UpdateProduct(int id , [FromBody]CreateUpdateProductDTO product)
         {
             var map = _mapper.Map<Product>(product);
-            repository.UpdateProduct(id , map);
-            return Ok("Update Successfull");
+            repository.UpdateProduct(map);
+            return Ok("Update Successfull !!!");
         }
 
-        [HttpDelete]
-        [Route("DeleteProduct/{id}")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id)
         {
             repository.DeleteProduct(id);

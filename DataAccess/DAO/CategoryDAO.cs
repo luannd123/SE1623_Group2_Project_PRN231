@@ -28,5 +28,15 @@ namespace DataAccess.DAO
             }
             return category;
         }
+
+        public static List<Product> GetProductByCategoryId(int id)
+        {
+            List<Product> list = new List<Product>();
+            using(var context = new StoreDBContext())
+            {
+                list = context.Products.Where(x => x.CategoryId == id).ToList();
+            }
+            return list;
+        }
     }
 }

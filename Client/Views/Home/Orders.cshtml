@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DataAccess.Models.Order>
+<div id="content">
+    <div id="content-left">
+        <h3 style="font-weight: normal;">Welcome Back</h3>
+        <h3>Account Management</h3>
+        <ul>
+            <a href="profile.html">
+            <li>Personal information</li></a>
+        </ul>
+        <h3>My order</h3>
+        <ul>
+            <a href="~/home/orders">
+            <li>All orders</li></a>
+        </ul>
+    </div>
+    <div id="content-right">
+        <div class="path-admin">ORDERS LIST</b></div>
+        <div class="content-main">
+            <div id="content-main-dashboard">
+                <div id="order-title">
+                </div>
+                <div id="order-table">
+                    <table id="orders">
+                        <tr>
+                            <th>OrderId</th>
+                            <th>OrderDate</th>
+                            <th>RequiredDate</th>
+                            <th>ShippedDate</th>
+                            <th>Freight($)</th>
+                        </tr>
+                        @foreach (var order in Model)
+                        {
+                            <tr>
+                                <td><a asp-controller="home" asp-action="orderDetails" asp-route-id="@order.OrderId">@Html.DisplayFor(modelItem => order.OrderId) (View order detail)</a></td>
+                                <td>@Html.DisplayFor(modelItem => order.OrderDate)</td>
+                                <td>@Html.DisplayFor(modelItem => order.RequireDate)</td>
+                                <td>@Html.DisplayFor(modelItem => order.ShippedDate)</td>
+                                <td>@Html.DisplayFor(modelItem => order.Freight)</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

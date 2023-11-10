@@ -28,7 +28,7 @@ namespace Repository.Repositories
         public void SaveProduct(Product product) => ProductDAO.SaveProduct(product);
         
 
-        public void UpdateProduct(int id, Product p) => ProductDAO.UpdateProduct(id, p);
+        public void UpdateProduct(Product p) => ProductDAO.UpdateProduct(p);
         
     }
 }

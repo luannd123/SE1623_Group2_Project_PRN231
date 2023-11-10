@@ -25,10 +25,10 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Home">Profile</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Profile">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="auth" asp-action="Index">Logout</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="auth" asp-action="logout">Logout</a>
                             </li>
                         }else if (Context.Session.GetString("admin") is not null)
                         {

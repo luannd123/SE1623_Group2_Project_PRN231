@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DataAccess.Models.OrderDetail>
+<div id="content">
+    <div id="content-left">
+        <h3 style="font-weight: normal;">Welcome Back</h3>
+        <h3>Account Management</h3>
+        <ul>
+            <a href="profile.html">
+            <li>Personal information</li></a>
+        </ul>
+        <h3>My order</h3>
+        <ul>
+            <a href="~/home/orders">
+            <li>All orders</li></a>
+        </ul>
+    </div>
+    <div id="content-right">
+        <div class="path-admin">ORDER DETAILS</b></div>
+        <div class="content-main">
+            <div id="content-main-dashboard">
+                <div id="order-title">
+                </div>
+                <div id="order-table">
+                    <table id="orders">
+                        <tr>
+                            <th>OrderId</th>
+                            <th>Product</th>
+                            <th>Quanity</th>
+                            <th>UnitPrice</th>
+                        </tr>
+                        @foreach (var order in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => order.OrderId)</td>
+                                <td>@Html.DisplayFor(modelItem => order.Product.ProductName)</td>
+                                <td>@Html.DisplayFor(modelItem => order.Quantity)</td>
+                                <td>@Html.DisplayFor(modelItem => order.Price)</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

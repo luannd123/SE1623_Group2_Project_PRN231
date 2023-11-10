@@ -1,4 +1,5 @@
 ﻿using DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,16 @@ namespace DataAccess.DAO
                 orders = context.Orders.ToList();
             }
             return orders;
+        }
+
+        public static Order GetOrderById (int id)
+        {
+            Order order = new Order();  
+            using (var context = new StoreDBContext()) 
+            {
+                order = context.Orders.FirstOrDefault(x => x.OrderId == id);
+            }
+            return order;
         }
 
         public static List<Order> GetProductByDate(DateTime From , DateTime To)
@@ -63,14 +74,14 @@ namespace DataAccess.DAO
             }
         }
 
-        public static void UpdateOrder(int id , Order order)
+        public static void UpdateOrder( Order order)
         {
             try
             {
                 using (var context = new StoreDBContext())
                 {
-                    order = context.Orders.SingleOrDefault(x => x.OrderId == id);
-                    context.Orders.Update(order);
+
+                    context.Entry<Order>(order).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     context.SaveChanges();
                 }
             }
@@ -78,6 +89,16 @@ namespace DataAccess.DAO
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public static OrderDetail GetOrderDetailByOrderId(int id)
+        {
+            OrderDetail o = new OrderDetail();
+            using(var context = new StoreDBContext())
+            {
+                o = context.OrderDetails.SingleOrDefault(x => x.OrderId == id);
+            }
+            return o;
         }
     }
 }

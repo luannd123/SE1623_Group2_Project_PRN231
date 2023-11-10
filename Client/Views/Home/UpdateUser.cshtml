@@ -1,0 +1,38 @@
+﻿@model DataAccess.Models.User
+<div id="content">
+    <div id="content-left">
+        <h3 style="font-weight: normal;">Welcome Back</h3>
+        <h3>Account Management</h3>
+        <ul>
+            <a href="profile.html">
+            <li>Personal information</li></a>
+        </ul>
+        <h3>My order</h3>
+        <ul>
+            <a href="~/home/orders">
+            <li>All orders</li></a>
+        </ul>
+    </div>
+    <div id="content-right">
+        <div class="path-admin">UPDATE A MEMBER</b></div>
+        <div class="content-main">
+            @using (Html.BeginForm("UpdateUser", "Home", FormMethod.Post, new { @id = "content-main-product" }))
+            {
+                <div class="content-main-1">
+                    @Html.HiddenFor(m => m.UserId)
+                    <label>Email (*):</label><br />
+                    @Html.TextBoxFor(m => m.Email, new { @readonly = "readonly" })<br />
+                    <label>Password (*):</label><br />
+                    @Html.PasswordFor(m => m.Password, new { value = Model.Password })<br />
+                </div>
+                <div class="content-main-1">
+                    <label>Phone (*):</label><br />
+                    @Html.TextBoxFor(m => m.Phone)
+                    <label>Country (*):</label><br />
+                    @Html.TextBoxFor(m => m.Country)
+                    <input type="submit" value="Update" />
+                </div>
+            }
+        </div>
+    </div>
+</div

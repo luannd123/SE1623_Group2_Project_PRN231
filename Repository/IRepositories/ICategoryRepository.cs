@@ -11,5 +11,7 @@ namespace Repository.IRepositories
     {
         List<Category> GetCategories();
         Category GetCategoryById(int id);
+
+        List<Product> GetProductsByCategoryId(int id);
     }
 }

@@ -73,14 +73,13 @@ namespace DataAccess.DAO
             }
         }
 
-        public static void UpdateUser(int id , User user)
+        public static void UpdateUser( User user)
         {
             try
             {
                 using (var context = new StoreDBContext())
                 {
-                    user = context.Users.SingleOrDefault(x => x.UserId == id );
-                    context.Users.Update(user);
+                    context.Entry<User>(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     context.SaveChanges();
                 }
             }

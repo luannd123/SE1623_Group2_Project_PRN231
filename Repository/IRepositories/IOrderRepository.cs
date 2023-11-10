@@ -10,9 +10,11 @@ namespace Repository.IRepositories
      public interface IOrderRepository
     {
         List<Order> GetOrders();
+        OrderDetail GetOrderDetail(int id);
+        Order GetOrder(int id);
         List<Order> GetOrderByDate(DateTime From , DateTime To);
         void SaveOrder(Order order);
         void DeleteOrder(int id);
-        void UpdateOrder(int id ,Order order);
+        void UpdateOrder(Order order);
     }
 }

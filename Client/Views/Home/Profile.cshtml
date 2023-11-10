@@ -1,0 +1,35 @@
+﻿@model DataAccess.Models.User;
+<div id="content">
+    <div id="content-left">
+        <h3 style="font-weight: normal;">Welcome Back</h3>
+        <h3>Account Management</h3>
+        <ul>
+            <a href="profile.html">
+            <li>Personal information</li></a>
+        </ul>
+        <h3>My order</h3>
+        <ul>
+            <a href="~/home/orders">
+            <li>All orders</li></a>
+        </ul>
+    </div>
+    <div id="content-right">
+        <div class="path">Personal information</b></div>
+        <div class="content-main">
+            <div id="profile-content">
+                <div class="profile-content-col">
+                    <div>Phone: <br />@Model.Phone</div>
+                    <div>Email: <br />@Model.Email</div>
+                </div>
+                <div class="profile-content-col">
+                    <div>Address: <br /> @Model.Country</div>
+                </div>
+                <div class="profile-content-col">
+                    <div>
+                        <a asp-controller="home" asp-action="updateUser" asp-route-id="@Model.UserId">Update Information</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

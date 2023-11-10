@@ -15,6 +15,8 @@ namespace Repository.Repositories
 
 
         public Category GetCategoryById(int id) => CategoryDAO.GetCategory(id);
-       
+
+        public List<Product> GetProductsByCategoryId(int id) => CategoryDAO.GetProductByCategoryId(id);
+        
     }
 }

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Client.Models.Cart>
+@using Client.Models;
+<div id="content">
+    <div id="cart">
+        <div id="cart-title">
+            <h3>SHOPPING CART</h3>
+        </div>
+        <div id="cart-content">
+            @foreach (Cart cart in Model)
+            {
+                <div class="cart-item">
+                    <div class="cart-item-infor">
+                        <div class="cart-item-img">
+                            <img src="~/img/1.jpg" />
+                        </div>
+                        <div class="cart-item-name">
+                            <a asp-controller="home" asp-action="detail" asp-route-id="@cart.Product.ProductId">
+                                @cart.Product.ProductName
+                            </a>
+                        </div>
+                        <div class="cart-item-price">
+                            @{
+                                var itemPrice = cart.Product.UnitPrice * cart.Quantity;
+                            }
+                            @itemPrice $
+                        </div>
+                        <div class="cart-item-button">
+                            <a asp-controller="home" asp-action="removeCart" asp-route-id="@cart.Product.ProductId">
+                                Remove
+                            </a>
+                        </div>
+                    </div>
+                    <div class="cart-item-function">
+                        @Html.TextBoxFor(modelItem => cart.Quantity , new { @readonly = "readonly" })
+                    </div>
+                </div>
+            }
+            <div id="cart-summary">
+                <div id="cart-summary-content">Total amount: <span style="color:red">@ViewData["TotalPrice"]  $</span></div>
+            </div>
+            <form method="post">
+                <div id="customer-info">
+                    <div id="customer-info-content">
+                        <h3>CUSTOMER INFORMATION:</h3>
+                        <div id="customer-info-detail">
+                            <div id="customer-info-left">
+                                @{
+                                    var member = ViewData["Member"] as DataAccess.Models.User;
+                                }
+                                @Html.TextBoxFor(modelItem => member.Phone, new { placeholder = "Phone *" })<br />
+                                @Html.TextBoxFor(modelItem => member.Email, new { placeholder = "Email *" , @readonly = "readonly"})<br />
+                            </div>
+                            <div id="customer-info-right">
+                                @Html.TextBoxFor(modelItem => member.Country, new { placeholder = "Address *" })<br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="customer-info">
+                    <div id="customer-info-content">
+                        <h3>PAYMENT METHODS:</h3>
+                        <div id="customer-info-payment">
+                            <div>
+                                <input type="radio" name="rbPaymentMethod" checked />
+                                Payment C.O.D - Payment on delivery
+                            </div>
+                            <div>
+                                <input type="radio" name="rbPaymentMethod" disabled />
+                                Payment via online payment gateway
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="cart-order">
+                    <a asp-controller="home" asp-action="saveOrder">
+                        <input type="button" value="ORDER" />
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

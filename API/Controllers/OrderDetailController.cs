@@ -21,15 +21,13 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("GetOrderDetails")]
         public IActionResult GetOrderDetails()
         {
             var result = repository.GetOrderDetails();
             return Ok(result);
         }
 
-        [HttpGet]
-        [Route("GetOrderDetailById/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetOrderDetailById(int id)
         {
             var result = repository.GetOrderById(id);
@@ -37,7 +35,6 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Route("AddNewOrderDetail")]
         public IActionResult AddNewOrderDetail(CreateUpdateOrderDetailDTO order)
         {
             try
@@ -49,8 +46,7 @@ namespace API.Controllers
             }
             return Ok("Add Successfull !!!");
         }
-        [HttpPut]
-        [Route("UpdateOrderDetail/{id}")]
+        [HttpPut("{id}")]
         public IActionResult UpdateOrderDetail(int id , [FromBody]CreateUpdateOrderDetailDTO order)
         {
             try{
@@ -63,8 +59,7 @@ namespace API.Controllers
             return Ok("Update Successfull !!!");
         }
 
-        [HttpDelete]
-        [Route("DeleteOrderDetail/{id}")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteOrderdetail(int id) 
         {
             try
